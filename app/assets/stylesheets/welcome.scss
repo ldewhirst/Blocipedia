@@ -4,10 +4,31 @@
 
 #index-title {
   text-align: center;
-  font-size: 15px;
+}
+
+#h3-title {
+  text-align: center;
+  color: black;
+
 }
 
 #header-title {
   text-align: center;
+}
 
+#button {
+  align-items: center;
+  color: #6B6B6B;
+}
+
+section {
+  background-color: #666666;
+  border-width: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
 }
