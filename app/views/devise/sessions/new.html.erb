@@ -1,5 +1,6 @@
-<div class="formwrapper">
-  <center>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-offset-2 centered">
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -26,5 +27,6 @@
 <% end %>
 
 Not a member? <%= render "devise/shared/links" %>
-</center>
+</div>
+</div>
 </div>
