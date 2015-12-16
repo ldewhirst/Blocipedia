@@ -15,10 +15,11 @@ class WikisController < ApplicationController
     @wiki = Wiki.new
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    @wiki.user = current_user
 
     if @wiki.save
       flash[:notice] = "Wiki was saved"
-      redirect_to @wiki
+      redirect_to [@wiki.user, @wiki]
     else
       flash[:alert] = "There was an error saving your wiki. Please try again!"
       render :new
@@ -35,7 +36,7 @@ class WikisController < ApplicationController
 
     if @wiki.save
       flash[:notice] = "Wiki was updated."
-      redirect_to [@wiki]
+      redirect_to [current_user, @wiki]
     else
       flash[:error] = "There was an error saving the wiki. Please try again"
       render :edit
@@ -47,7 +48,7 @@ class WikisController < ApplicationController
 
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully"
-      redirect_to wikis_path
+      redirect_to user_wikis_path(current_user)
     else
       flash[:error] = "There was an error deleting the wiki"
       render :show

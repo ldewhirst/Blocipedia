@@ -7,7 +7,7 @@
 
         <table class="table">
           <tbody>
-            <td><%= link_to wiki.title, wiki_path(wiki)  %></td>
+            <td><%= link_to wiki.title, user_wiki_path(wiki.user, wiki)  %></td>
             <td><%= wiki.body %></td>
           </tbody>
         </table>
@@ -16,7 +16,7 @@
 
   <% if user_signed_in? %>
   <div class="col-md-4">
-    <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
+    <%= link_to "New Wiki", new_user_wiki_path(current_user), class: 'btn btn-success' %>
   </div>
   <% end %>
 </div>
