@@ -7,6 +7,10 @@ class WikisController < ApplicationController
     @wiki = Wiki.new
   end
 
+  def show
+    @wiki = Wiki.find(params[:id])
+  end
+
   def create
     @wiki = Wiki.new
     @wiki.title = params[:wiki][:title]
@@ -22,6 +26,7 @@ class WikisController < ApplicationController
   end
 
   def edit
+    @wiki = Wiki.find(params[:id])
   end
 
   def update
@@ -42,7 +47,7 @@ class WikisController < ApplicationController
 
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully"
-      redirect_to @wiki.topic
+      redirect_to wikis_path
     else
       flash[:error] = "There was an error deleting the wiki"
       render :show
