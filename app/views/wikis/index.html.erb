@@ -1,8 +1,18 @@
 <div class="container">
   <h2>Wikis</h2>
-  <table class="table">
-    <tbody>
-      <td><%= @title %></td>
+
+  <div class="row">
+    <div class="col-md-8">
+      <% @wikis.each do |wiki| %>
+
+        <table class="table">
+          <tbody>
+            <td><%= link_to wiki.title, wiki_path(wiki)  %></td>
+            <td><%= wiki.body %></td>
+          </tbody>
+        </table>
+
+      <% end %>
 
   <% if user_signed_in? %>
   <div class="col-md-4">
