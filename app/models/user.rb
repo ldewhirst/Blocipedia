@@ -7,7 +7,10 @@ class User < ActiveRecord::Base
   has_many :wikis
   after_initialize :init
 
-  attr_accessible :roles
+  def init
+    self.role ||= :standard
+  end
 
+  enum role: [:standard, :premium, :admin]
 
 end
