@@ -1,5 +1,4 @@
 class WikisController < ApplicationController
-  before_action :authorize_user, except: [:index, :show]
 
   def index
     @wikis = Wiki.all
@@ -14,7 +13,7 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new
+    @wiki = current_user.wikis.new
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
 
@@ -61,13 +60,6 @@ class WikisController < ApplicationController
 
   def wiki_params
     params.require(:wiki).permit(:title, :body)
-  end
-
-  def authorize_user
-    unless current_user = user.admin?
-      flash[:alert] = "You must be an admin to do that"
-      redirect_to wiki_path
-    end
   end
 
 end
