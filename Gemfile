@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'faker'
 gem 'pundit'
 gem 'devise'
 gem 'bootstrap-sass'
