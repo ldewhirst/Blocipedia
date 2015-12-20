@@ -5,10 +5,12 @@
     <div class="col-md-8">
       <% @wikis.each do |wiki| %>
 
-        <table class="table">
+        <table class="table table-hover">
           <tbody>
-            <td><%= link_to wiki.title, wiki_path(wiki)  %></td>
-            <td><%= wiki.body %></td>
+            <tr>
+              <td><%= link_to wiki.title, wiki_path(wiki)  %></td>
+              <td><%= wiki.body %></td>
+            </tr>
           </tbody>
         </table>
 
