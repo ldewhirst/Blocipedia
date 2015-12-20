@@ -14,9 +14,13 @@
       <li><%= link_to "About", welcome_about_path %></li>
       <li><%= link_to "Wikis", authenticated_root_path %></li>
       <% if user_signed_in? %>
+        <% if current_user.standard? == true %>
+        <li class="nav nav-tabs navbar-right"><%= link_to 'Upgrade Now', new_charge_path %></li>
+        <% end %>
         <li class="nav nav-tabs navbar-right"><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
         <li class="nav nav-tabs navbar-right"><%= link_to 'Edit Profile', edit_user_registration_path %></li>
         <li class="nav nav-tabs navbar-right">Signed in as <%= current_user.email %> </li>
+
       <% else %>
         <li class="nav nav-tabs navbar-right"><%= link_to "Sign In", new_user_session_path %></li>
       <% end %>
