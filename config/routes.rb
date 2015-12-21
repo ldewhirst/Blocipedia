@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :charges, only: [:new, :create]
 
+  patch '/charges/downgrade' => 'charges#downgrade', as: :downgrade
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
