@@ -35,6 +35,6 @@ class ChargesController < ApplicationController
   end
 
   def downgrade
-    current_user.role == standard
+    current_user.standard!
   end
 end
