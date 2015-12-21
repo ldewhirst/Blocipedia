@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 
+gem 'stripe'
 gem 'faker'
 gem 'pundit'
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'figaro', '1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use SCSS for stylesheets

@@ -1,7 +1,15 @@
 include Faker
+
 User.destroy_all
 Wiki.destroy_all
 
+
+30.times do
+  Wiki.create!(
+    title: Faker::Lorem.sentence,
+    body: Faker::Lorem.paragraph
+  )
+end
 
 15.times do
   User.create!(
@@ -20,9 +28,6 @@ users = User.all
     user: users.sample
   )
 end
-
-
-
 
 
 puts "Seed finished"
