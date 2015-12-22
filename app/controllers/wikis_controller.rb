@@ -1,7 +1,7 @@
 class WikisController < ApplicationController
 
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.visible_to(current_user)
   end
 
   def new
@@ -10,6 +10,12 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
+
+    #unless @wiki.public || user.premium? || user.admin?
+    #  flash.now[:alert] = "You must be a premium member to view private wikis"
+    #  redirect_to new_session_path
+    #end
   end
 
   def create
@@ -63,4 +69,10 @@ class WikisController < ApplicationController
     params.require(:wiki).permit(:title, :body)
   end
 
+  def authorize_user
+    unless current_user.admin? || current_user.premium?
+      flash[:error] = "You must be a premium member to view this"
+      redirect_to root_path
+    end
+  end
 end
