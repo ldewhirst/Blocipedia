@@ -25,7 +25,7 @@
   </div>
 <% end %>
 <% if current_user.standard? == true %>
-  <p>Want to upgrade? <%= button_to "Upgrade to Premium", new_charge_path %> </p>
+  <p>Want to upgrade? <%= button_to "Upgrade to Premium", new_subscriber_path %> </p>
 <% end %>
 <% if current_user.premium? == true %>
   <p>Downgrade my account <%= button_to "Downgrade to Standard", downgrade_path, method: :patch %> </p>
