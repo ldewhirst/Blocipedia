@@ -11,11 +11,6 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-
-    #unless @wiki.public || user.premium? || user.admin?
-    #  flash.now[:alert] = "You must be a premium member to view private wikis"
-    #  redirect_to new_session_path
-    #end
   end
 
   def create

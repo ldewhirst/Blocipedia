@@ -25,14 +25,13 @@
   </div>
 <% end %>
 <% if current_user.standard? == true %>
-  <p>Want to upgrade? <%= button_to "Upgrade to Premium", new_subscriber_path %> </p>
+  <p>Want to upgrade? <%= button_to "Upgrade to Premium", new_charge_path %> </p>
 <% end %>
 <% if current_user.premium? == true %>
-  <p>Downgrade my account <%= button_to "Downgrade to Standard" %> </p>
+  <p>Downgrade my account <%= button_to "Downgrade to Standard", patch '/charges/downgrade' => 'charges#downgrade', as: :downgrade %> </p>
 <% end %>
   <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+  <%= link_to "Back", :back %>
 </div>
 </div>
 </div>
