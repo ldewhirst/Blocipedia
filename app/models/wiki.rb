@@ -1,19 +1,24 @@
 class Wiki < ActiveRecord::Base
   belongs_to :user
+  after_initialize :set_public
 
   scope :publicly_viewable, -> { where(private: false) }
   scope :privately_viewable, -> { where(private: true) }
+  scope :order_by_recently_created, -> { order(created_at: :desc) }
 
   scope :visible_to, -> (user) { (user.present? && (user.premium? || user.admin?)) ? all : publicly_viewable }
 
-  default_scope { order("created_at DESC") }
 
-  def public
-    self.private == false
-  end
+  private
+    def set_public
+      self.private ||= false
+    end
 
-  def private
-    self.private == true
-  end
-
+  # def public!
+  #   update(private: false)
+  # end
+  #
+  # def private!
+  #   update(private: true)
+  # end
 end
