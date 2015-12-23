@@ -15,7 +15,7 @@ class SubscribersController < ApplicationController
 
     current_user.subscribed = true
     current_user.stripe_id = customer.id
-    current_user.update_attribute(:role, 'premium')
+    current_user.premium!
     current_user.save
 
     redirect_to root_path
@@ -26,6 +26,7 @@ class SubscribersController < ApplicationController
   end
 
   def downgrade
+    customer.subscription.retrieve(customer.id).delete(:at_period_end => true)
     current_user.standard!
   end
 

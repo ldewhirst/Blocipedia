@@ -28,9 +28,9 @@
   <p>Want to upgrade? <%= button_to "Upgrade to Premium", new_subscriber_path %> </p>
 <% end %>
 <% if current_user.premium? == true %>
-  <p>Downgrade my account <%= button_to "Downgrade to Standard", downgrade_path, method: :patch %> </p>
+  <p>Downgrade my account <%= button_to "Downgrade to Standard" %> </p>
 <% end %>
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
 </div>

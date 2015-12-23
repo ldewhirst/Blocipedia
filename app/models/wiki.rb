@@ -4,15 +4,15 @@ class Wiki < ActiveRecord::Base
   scope :publicly_viewable, -> { where(private: false) }
   scope :privately_viewable, -> { where(private: true) }
 
-  scope :visible_to, -> (user) { (user.premium? || user.admin?) ? all : publicly_viewable }
+  scope :visible_to, -> (user) { (user.present? && (user.premium? || user.admin?)) ? all : publicly_viewable }
 
   default_scope { order("created_at DESC") }
 
-  def public?
+  def public
     self.private == false
   end
 
-  def private?
+  def private
     self.private == true
   end
 
