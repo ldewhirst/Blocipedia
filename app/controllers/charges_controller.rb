@@ -35,6 +35,9 @@ class ChargesController < ApplicationController
   end
 
   def downgrade
-    current_user.standard!
+    self.update_attribute(role: :standard)
+    flash[:alert] = "Note: all private wikis you've created will become public upon downgrade"
+    @wikis.user.private? == @wikis.public
   end
+
 end

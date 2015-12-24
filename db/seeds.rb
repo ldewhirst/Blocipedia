@@ -4,13 +4,6 @@ User.destroy_all
 Wiki.destroy_all
 
 
-30.times do
-  Wiki.create!(
-    title: Faker::Lorem.sentence,
-    body: Faker::Lorem.paragraph
-  )
-end
-
 15.times do
   User.create!(
     username: Faker::Internet.user_name,
@@ -26,6 +19,15 @@ users = User.all
     title: Faker::Lorem.sentence,
     body: Faker::Lorem.paragraph,
     user: users.sample
+  )
+end
+
+10.times do
+  Wiki.create!(
+    title: Faker::Lorem.sentence,
+    body: Faker::Lorem.paragraph,
+    user: users.sample,
+    private: true
   )
 end
 
