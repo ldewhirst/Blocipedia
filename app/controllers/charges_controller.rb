@@ -34,10 +34,12 @@ class ChargesController < ApplicationController
       redirect_to new_charge_path
   end
 
-  def downgrade
-    self.update_attribute(role: :standard)
-    flash[:alert] = "Note: all private wikis you've created will become public upon downgrade"
-    @wikis.user.private? == @wikis.public
-  end
+
+    def downgrade
+      current_user.standard!
+      current_user.save
+      flash[:alert] = "Note: all private wikis you've created will become public upon downgrade"
+      @wikis.user.private? == @wiki.public!
+    end
 
 end
