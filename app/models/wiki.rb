@@ -6,7 +6,7 @@ class Wiki < ActiveRecord::Base
   scope :privately_viewable, -> { where(private: true) }
   scope :order_by_recently_created, -> { order(created_at: :desc) }
 
-  scope :visible_to, -> (user) { (user.present? && (user.premium? || user.admin?)) ? all : publicly_viewable }
+  scope :visible_to, -> (user) { (user.present? && (user.premium? || user.admin?)) ? all : (publicly_viewable) }
 
 
   private
