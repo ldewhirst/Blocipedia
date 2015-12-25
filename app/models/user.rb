@@ -12,5 +12,9 @@ class User < ActiveRecord::Base
   end
 
   enum role: [:standard, :premium, :admin]
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7-upgrade
 
 end
