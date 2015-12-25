@@ -34,11 +34,6 @@ class ChargesController < ApplicationController
       redirect_to new_charge_path
   end
 
-<<<<<<< HEAD
-  def downgrade
-    current_user.standard!
-  end
-=======
 
     def downgrade
       current_user.standard!
@@ -47,5 +42,4 @@ class ChargesController < ApplicationController
       @wikis.user.private? == @wiki.public!
     end
 
->>>>>>> 7-upgrade
 end
