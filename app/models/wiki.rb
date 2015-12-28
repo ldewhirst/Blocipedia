@@ -1,7 +1,5 @@
 class Wiki < ActiveRecord::Base
   belongs_to :user
-<<<<<<< HEAD
-=======
   after_initialize :set_public
 
   scope :publicly_viewable, -> { where(private: false) }
@@ -10,10 +8,8 @@ class Wiki < ActiveRecord::Base
 
   scope :visible_to, -> (user) { (user.present? && (user.premium? || user.admin?)) ? all : (publicly_viewable) }
 
-
   private
     def set_public
       self.private ||= false
     end
->>>>>>> 7-upgrade
 end

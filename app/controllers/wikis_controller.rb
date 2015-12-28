@@ -1,27 +1,16 @@
 class WikisController < ApplicationController
 
   def index
-<<<<<<< HEAD
-    @wikis = Wiki.all
-  end
-
-  def new
-    @wiki = Wiki.new
-=======
     @wikis = Wiki.visible_to(current_user).order_by_recently_created
   end
 
   def new
     @wiki = Wiki.new(params[:id])
->>>>>>> 7-upgrade
   end
 
   def show
     @wiki = Wiki.find(params[:id])
-<<<<<<< HEAD
-=======
     authorize @wiki
->>>>>>> 7-upgrade
   end
 
   def create
@@ -72,11 +61,6 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-<<<<<<< HEAD
-    params.require(:wiki).permit(:title, :body)
-  end
-
-=======
     params.require(:wiki).permit(:title, :body, :private)
   end
 
@@ -86,5 +70,4 @@ class WikisController < ApplicationController
       redirect_to root_path
     end
   end
->>>>>>> 7-upgrade
 end
