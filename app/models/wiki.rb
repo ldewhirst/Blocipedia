@@ -1,5 +1,7 @@
 class Wiki < ActiveRecord::Base
   belongs_to :user
+  has_many :collaborators
+  has_many :collaborations, through: :collaborators, source: :user
 
   after_initialize :set_public
 
@@ -8,6 +10,7 @@ class Wiki < ActiveRecord::Base
   scope :order_by_recently_created, -> { order(created_at: :desc) }
 
   scope :visible_to, -> (user) { (user.present? && (user.premium? || user.admin?)) ? all : (publicly_viewable) }
+
 
   private
     def set_public

@@ -7,6 +7,7 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'figaro', '1.0'
 gem 'redcarpet'
+gem 'pry-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use SCSS for stylesheets
@@ -39,4 +40,5 @@ end
 group :development do
   gem 'sqlite3'
   gem 'spring'
+  gem 'quiet_assets'
 end
