@@ -12,6 +12,14 @@ class Wiki < ActiveRecord::Base
   scope :visible_to, -> (user) { (user.present? && (user.premium? || user.admin?)) ? all : (publicly_viewable) }
 
 
+  def private
+    private == true
+  end
+
+  def public
+    private == false
+  end
+
   private
     def set_public
       self.private ||= false

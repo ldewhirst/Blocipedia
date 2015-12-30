@@ -17,7 +17,7 @@
   <%= render :partial => 'form', :locals => {:f => f} %>
 </div>
 
-<%= render :partial => 'collaborators' %>
+<%= render :partial => 'collaborators', :locals => {:wiki => @wiki} %>
 
 <div class="form-group">
   <%= f.submit "Save" %>
