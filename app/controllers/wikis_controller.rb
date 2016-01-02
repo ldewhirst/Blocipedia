@@ -29,14 +29,16 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @users = User.all
   end
 
   def update
     @wiki = Wiki.find(params[:id])
     @wiki.assign_attributes(wiki_params)
+    binding.pry
 
-    authorize @wiki
-    if @wiki.save(wiki_params)
+    #authorize @wiki
+    if @wiki.update(wiki_params)
       flash[:notice] = "Wiki was updated."
       redirect_to [@wiki]
     else
@@ -61,7 +63,7 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private)
+    params.require(:wiki).permit(:title, :body, :private, user_ids: [])
   end
 
   def authorize_user
