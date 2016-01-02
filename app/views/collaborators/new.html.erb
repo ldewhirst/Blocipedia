@@ -1,0 +1,23 @@
+<h1>Add New Collaborators</h1>
+<div class="col-md-8">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Add as collaborator?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <div class="field">
+      			<% @user.each do |user| %>
+      			    <div class="form-group">
+      			    	<tr>
+      			    		<td><%= user.email %></td>
+      			    		<td><%= button_to "Add Collaborator", wiki_collaborators_path(@wiki.id) %></td>
+      			    		<td><%= button_to "Remove Collaborator", wiki_collaborator_path(@wiki, @user), method: :delete%></td>
+      			    	</tr>
+      			    </div>
+            <% end %>
+    	</div>
+    </tbody>
+  </table>

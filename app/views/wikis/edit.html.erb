@@ -17,15 +17,10 @@
   <%= render :partial => 'form', :locals => {:f => f} %>
 </div>
 
-<p class="text-center">Collaborators</p>
-            <div class="well" style="max-height: 300px;overflow: auto;">
-              <% @users.each do |user| %>
-        		<ul class="list-group checked-list-box">
-                  <li class="list-group-item"><input type="checkbox" value=""><%= user.email %> </li>
-                </ul>
-              <% end %>
-            </div>
-        </div>
+    <% @users.each do |user| %>
+      <%= check_box_tag "wiki[user_ids][]", user.id, @wiki.users.include?(user), id: dom id(user) %>
+      <%= label_tag dom id(user), user.email %>
+    <% end %>
 
 <!-- <%= render :partial => 'collaborators', :locals => {:wiki => @wiki} %> -->
 
