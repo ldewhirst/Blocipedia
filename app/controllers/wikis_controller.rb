@@ -35,7 +35,7 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     @wiki.assign_attributes(wiki_params)
-    binding.pry
+    #binding.pry
 
     #authorize @wiki
     if @wiki.update(wiki_params)
