@@ -1,8 +1,4 @@
 include Faker
-<<<<<<< HEAD
-=======
-
->>>>>>> 7-upgrade
 User.destroy_all
 Wiki.destroy_all
 
@@ -25,10 +21,6 @@ users = User.all
   )
 end
 
-<<<<<<< HEAD
-
-
-=======
 10.times do
   Wiki.create!(
     title: Faker::Lorem.sentence,
@@ -37,8 +29,6 @@ end
     private: true
   )
 end
->>>>>>> 7-upgrade
-
 
 puts "Seed finished"
 puts "#{Wiki.count} wikis created"

@@ -1,7 +1,7 @@
 class Wiki < ActiveRecord::Base
   belongs_to :user
-  has_many :collaborators
-  has_many :collaborations, through: :collaborators, source: :user
+  has_many :collaborations
+  has_many :users, through: :collaborations
 
   after_initialize :set_public
 
