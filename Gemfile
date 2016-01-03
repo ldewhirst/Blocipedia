@@ -39,4 +39,5 @@ end
 group :development do
   gem 'sqlite3'
   gem 'spring'
+  gem 'pry-rails'
 end

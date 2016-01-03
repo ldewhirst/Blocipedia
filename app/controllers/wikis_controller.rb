@@ -1,7 +1,8 @@
 class WikisController < ApplicationController
 
   def index
-    @wikis = Wiki.visible_to(current_user).order_by_recently_created
+    @wikis = policy_scope(Wiki)
+    @wikis = Wiki.order_by_recently_created
   end
 
   def new
@@ -10,7 +11,7 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
+    # authorize @wiki
   end
 
   def create
@@ -35,7 +36,7 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     @wiki.assign_attributes(wiki_params)
-    binding.pry
+    #binding.pry
 
     #authorize @wiki
     if @wiki.update(wiki_params)
