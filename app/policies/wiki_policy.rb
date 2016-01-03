@@ -1,9 +1,5 @@
 class WikiPolicy < ApplicationPolicy
 
-  def index?
-    true
-  end
-  
   class Scope
     attr_reader :user, :scope
 
