@@ -1,5 +1,5 @@
 class AddMarkdownContentToWikis < ActiveRecord::Migration
   def change
-    add_column :wikis, :markdown_content, :text
+    add_column :wikis, :text
   end
 end
