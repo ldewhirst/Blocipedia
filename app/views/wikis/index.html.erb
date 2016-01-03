@@ -1,23 +1,27 @@
 <div class="container">
-  <h2>Wikis</h2>
-
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
+  <h2>Wikis</h2>
       <% @wikis.each do |wiki| %>
-        <table class="table table-hover">
+        <table class="table table-condensed">
           <tbody>
             <tr>
               <td><%= link_to wiki.title, wiki_path(wiki)  %></td>
-              <td><%= wiki.body %></td>
             </tr>
           </tbody>
         </table>
 
       <% end %>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-md-6 col-offset-6">
   <% if user_signed_in? %>
   <div class="col-md-4">
     <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
   </div>
   <% end %>
+</div>
+</div>
 </div>
