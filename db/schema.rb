@@ -23,11 +23,6 @@ ActiveRecord::Schema.define(version: 20160102135807) do
   add_index "collaborations", ["user_id"], name: "index_collaborations_on_user_id"
   add_index "collaborations", ["wiki_id"], name: "index_collaborations_on_wiki_id"
 
-  create_table "collaborators", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "username",               default: "", null: false
     t.string   "email",                  default: "", null: false
@@ -58,9 +53,8 @@ ActiveRecord::Schema.define(version: 20160102135807) do
     t.text     "body"
     t.boolean  "private"
     t.integer  "user_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.text     "markdown_content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "wikis", ["user_id"], name: "index_wikis_on_user_id"

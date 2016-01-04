@@ -1,18 +1,16 @@
 include Faker
-<<<<<<< HEAD
-=======
-
->>>>>>> 7-upgrade
 User.destroy_all
 Wiki.destroy_all
 
 
 15.times do
-  User.create!(
+  u = User.new(
     username: Faker::Internet.user_name,
     email: Faker::Internet.safe_email,
     password: Faker::Internet.password(8)
   )
+  u.skip_confirmation!
+  u.save
 end
 
 users = User.all
@@ -25,10 +23,6 @@ users = User.all
   )
 end
 
-<<<<<<< HEAD
-
-
-=======
 10.times do
   Wiki.create!(
     title: Faker::Lorem.sentence,
@@ -37,7 +31,6 @@ end
     private: true
   )
 end
->>>>>>> 7-upgrade
 
 
 puts "Seed finished"
