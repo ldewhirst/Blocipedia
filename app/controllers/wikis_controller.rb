@@ -1,8 +1,7 @@
 class WikisController < ApplicationController
 
   def index
-    @wikis = policy_scope(Wiki)
-    @wikis = Wiki.order_by_recently_created
+    @wikis = Wiki.visible_to(current_user).order_by_recently_created
   end
 
   def new
