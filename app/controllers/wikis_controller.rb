@@ -6,6 +6,7 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new(params[:id])
+    @users = User.all
   end
 
   def show

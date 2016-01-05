@@ -1,38 +1,50 @@
 <div class="container">
   <div class="row row-centered">
-    <div class="col-md-6 col-md-offset-3">
-
+    <div class="col-md-6">
       <h1>Edit Wiki</h1>
+    </br></br>
+        <%= form_for @wiki do |f| %>
+        <div class="field">
+          <%= f.label :title %></br>
+          <%= f.text_field :title %>
+        </div>
 
-<%= form_for @wiki do |f| %>
-<div class="field">
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-</div>
+        <div class="field">
+          <%= f.label :body %></br>
+          <%= f.text_area :body %>
+        </div>
 
-<div class="field">
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-</div>
+        <% if current_user.admin? || current_user.premium? %>
+          <div class="form-group">
+            <%= f.label :private, class: 'checkbox' do %>
+            <%= f.check_box :private %> Private wiki
+            <% end %>
+          </div>
+        <% end %>
 
-<div class="field">
-  <%= render :partial => 'form', :locals => {:f => f} %>
-</div>
+        <% if current_user.admin? || current_user.premium? %>
+        <div class="col-md-8 col-md-offset-2">
+        <% @users.each do |user| %>
+          <%= check_box_tag "wiki[user_ids][]", user.id,
+            @wiki.users.include?(user), id: dom_id(user) %>
+          <%= label_tag dom_id(user), user.email %>
+          </br>
+        <% end %>
+        </div>
+        <% end %>
 
-  <% if current_user.admin? || current_user.premium? %>
-<div class="col-md-8 col-md-offset-2">
-  <% @users.each do |user| %>
-    <%= check_box_tag "wiki[user_ids][]", user.id,
-      @wiki.users.include?(user), id: dom_id(user) %>
-    <%= label_tag dom_id(user), user.email %>
-  <% end %>
-</div>
-<% end %>
-<div class="col-md-8 col-md-offset-2">
-  <%= f.submit "Save" %>
-<% end %>
-</div>
+        <div class="col-md-8 col-md-offset-2">
+          <%= f.submit "Save" %>
+        <% end %>
+        </div>
+    </div>
 
-</div>
-</div>
+        <div class="col-md-6">
+          <h2>Preview</h2>
+            </br></br>
+          <div id="wiki_preview">
+          </div>
+        </div>
+
+  </div>
 </div>
