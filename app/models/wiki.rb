@@ -1,4 +1,7 @@
 class Wiki < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   belongs_to :user
   has_many :collaborations
   has_many :users, through: :collaborations
@@ -10,6 +13,10 @@ class Wiki < ActiveRecord::Base
   scope :order_by_recently_created, -> { order(created_at: :desc) }
 
   scope :visible_to, -> (user) { (user.present? && (user.premium? || user.admin?)) ? all : (publicly_viewable) }
+
+  def should_generate_new_friendly_id?
+    new_record?
+  end
 
   def public?
     self.private == false
