@@ -15,7 +15,7 @@ class Wiki < ActiveRecord::Base
   scope :visible_to, -> (user) { (user.present? && (user.premium? || user.admin?)) ? all : (publicly_viewable) }
 
   def should_generate_new_friendly_id?
-    new_record?
+    title_changed?
   end
 
   def public?
