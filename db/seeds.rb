@@ -10,8 +10,8 @@ Wiki.destroy_all
     email: Faker::Internet.safe_email,
     password: Faker::Internet.password(8)
   )
-  u.skip_confirmation!
-  u.save
+  # u.skip_confirmation!
+  # u.save
 end
 
 users = User.all
