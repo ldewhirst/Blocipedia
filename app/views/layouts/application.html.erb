@@ -9,32 +9,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class-"navbar navbar-default">
   <div class="container">
     <ul class="nav nav-tabs">
       <li><%= link_to "Home", root_path %></li>
-      <!-- <li><%= link_to "About", welcome_about_path %></li> -->
       <li><%= link_to "Wikis", wikis_path %></li>
-      <% if user_signed_in? %>
-        <% if current_user.standard? == true %>
-        <li class="nav nav-tabs navbar-right"><%= link_to 'Upgrade Now', new_charge_path %></li>
-        <% end %>
-        <li class="nav nav-tabs navbar-right"><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-        <li class="nav nav-tabs navbar-right"><%= link_to 'Edit Profile', edit_user_registration_path %></li>
-        <li class="nav nav-tabs navbar-right">Signed in as <%= current_user.email %> </li>
-
-      <% else %>
-        <li class="nav nav-tabs navbar-right"><%= link_to "Sign In", new_user_session_path %></li>
-      <% end %>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <% if user_signed_in? %>
+          <class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            Hello, <class="navbar-link"><%= current_user.email %>!<span class="caret"></span>
+          <ul class="dropdown-menu" role="menu">
+            <% if current_user.standard? == true %>
+              <li><%= link_to 'Upgrade Now', new_charge_path %></li>
+            <% end %>
+            <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </li>
+      <% end %>
+      <% if user_signed_in? == false %>
+        <li><%= link_to "Sign In", new_user_session_path %></li>
+      <% end %>
+      </ul>
+    </div>
   </div>
-
+</nav>
   <div id="flash">
-    <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
   </div>
+</nav>
 
 <%= yield %>
 
-</body>
+  </body>
 </html>
