@@ -9,42 +9,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class-"navbar navbar-default">
   <div class="container">
-    <ul class="nav nav-tabs">
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Wikis", wikis_path %></li>
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right">
-      <% if user_signed_in? %>
-        <li class="dropdown">
-          <class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            Hello, <%= current_user.email %>!<span class="caret"></span>
-          <ul class="dropdown-menu" role="menu">
-            <% if current_user.standard? == true %>
-              <li><%= link_to 'Upgrade Now', new_charge_path %></li>
-            <% end %>
-            <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
-            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-          </ul>
-        </li>
-      <% end %>
-      <% if user_signed_in? == false %>
-        <li><%= link_to "Sign In", new_user_session_path %></li>
-      <% end %>
-      </ul>
+    <div class="row">
+      <div class="col-md-12">
+        <%= render 'shared/header' %>
+        <%= render 'shared/flash' %>
+      </div>
     </div>
+    <%= yield %>
   </div>
-</nav>
-  <div id="flash">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-  </div>
-</nav>
-
-<%= yield %>
-
-  </body>
+</body>
 </html>
